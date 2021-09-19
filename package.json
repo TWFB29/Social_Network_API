@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/TWFB29/Social_Network_API#readme",
   "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
     "mongoose": "^6.0.6"
   }
 }
