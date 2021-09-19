@@ -16,7 +16,7 @@ const thoughtController = {
         });
     },
     getThoughtById({ params }, res) {
-        Thought.findOne({ _id: params.id })
+        thought.findOne({ _id: params.id })
         .populate({
             path: 'user',
             select: '-__v'
@@ -30,7 +30,7 @@ const thoughtController = {
         });  
     },
     createThought({ params, body }, res) {
-        return Thought.create(body)
+        return thought.create(body)
         .then(({ _id}) => {
             return User.findOneAndUpdate(
                 { username: body.username},
@@ -48,7 +48,7 @@ const thoughtController = {
         .catch(err => res.json(err));    
     },
     updateThought ({ params, body }, res) {
-        Thought.findOneAndUpdate({ _id: params.id}, body, {new: true })
+        thought.findOneAndUpdate({ _id: params.id}, body, {new: true })
         .then(dbThoughtData => {
             if (!dbThoughtData) {
                 res.status(400).json({ message: 'No thoughts with this id exist!'});
@@ -59,7 +59,7 @@ const thoughtController = {
         .catch(err => res.status(400).json(err));
     },
     deleteThought ({ params }, res) { 
-        Thought.findOneAndDelete({ _id: params.id })
+        thought.findOneAndDelete({ _id: params.id })
         .then(dbThoughtData => {
             if (!dbThoughtData) {
                 res.status(400).json({ message: 'No thoughts with this id exist!'});
@@ -70,7 +70,7 @@ const thoughtController = {
         .catch(err => res.status(400).json(err))
     },
     addReaction ({ params, body }, res) {
-        Thought.findOneAndUpdate(
+        thought.findOneAndUpdate(
            { _id: params.thoughtId },
            { $push: { reactions: body } },
            { new: true}
@@ -82,10 +82,10 @@ const thoughtController = {
            }
            res.json(dbThoughtData);
        })
-       .catch(err => res.status(500).json(err))
+       .catch(err => res.json(err));
    },
    deleteReaction({ params }, res) {
-    Thought.findOneAndUpdate(
+    thought.findOneAndUpdate(
         { _id: params.thoughtId },
         { $pull: {reactions: params.reactionId} },
         {new: true }
