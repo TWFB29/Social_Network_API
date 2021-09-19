@@ -42,7 +42,7 @@ const userSchema = new Schema(
         return this.friends.length
     });
 
-    const User = model('User', userSchema);
+    const user = model('User', userSchema);
 
-    module.exports = User;
+    module.exports = user;
     
