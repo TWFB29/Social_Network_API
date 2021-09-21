@@ -7,7 +7,6 @@ const userController = {
             path: 'thoughts',
             select: '-__v'
         })
-        select('-__v')
         .sort ({ _id: -1 })
         .then(dbUserData => res.json(dbUserData))
         .catch(err => {
@@ -40,7 +39,7 @@ const userController = {
           .catch(err => res.json(err));
       },
       updateUser ({ params, body }, res) {
-        User.findOneAndUpdate({ _id: params.id }, body, { new: true })
+        user.findOneAndUpdate({ _id: params.id }, body, { new: true })
         
         .then(dbUserData => {
             if (!dbUserData) {
