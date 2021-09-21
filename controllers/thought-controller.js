@@ -7,7 +7,6 @@ const thoughtController = {
             path: 'user',
             select: '-__v'
         })
-        // select('-__v')
         .sort ({ _id: -1 })
         .then(dbThoughtData => res.json(dbThoughtData))
         .catch(err => {
@@ -29,7 +28,7 @@ const thoughtController = {
             res.status(400).json(err)
         });  
     },
-    createThought({ params, body }, res) {
+    addThought({ params, body }, res) {
         return thought.create(body)
         .then(({ _id}) => {
             return User.findOneAndUpdate(
@@ -47,7 +46,7 @@ const thoughtController = {
         })
         .catch(err => res.json(err));    
     },
-    updateThought ({ params, body }, res) {
+    changeThought ({ params, body }, res) {
         thought.findOneAndUpdate({ _id: params.id}, body, {new: true })
         .then(dbThoughtData => {
             if (!dbThoughtData) {
@@ -58,7 +57,7 @@ const thoughtController = {
         })
         .catch(err => res.status(400).json(err));
     },
-    deleteThought ({ params }, res) { 
+    removeThought ({ params }, res) { 
         thought.findOneAndDelete({ _id: params.id })
         .then(dbThoughtData => {
             if (!dbThoughtData) {
