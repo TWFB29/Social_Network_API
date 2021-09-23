@@ -35,5 +35,4 @@ const thoughtSchema = new Schema (
       });
 
     const thought = model('thought', thoughtSchema);
-
     module.exports = thought;
