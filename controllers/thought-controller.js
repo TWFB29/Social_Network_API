@@ -32,7 +32,7 @@ const thoughtController = {
     addThought({ params, body }, res) {
         return thought.create(body)
         .then(({ _id}) => {
-            return User.findOneAndUpdate(
+            return user.findOneAndUpdate(
                 { username: body.username},
                 { $addToSet: { thoughts: _id }},
                 { new: true}
