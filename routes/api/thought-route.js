@@ -1,4 +1,4 @@
-const thoughtController = require('../../controllers/thought-controller');
+// const thoughtController = require('../../controllers/thought-controller');
 
 const router = require('express').Router();
 

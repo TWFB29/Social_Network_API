@@ -3,10 +3,10 @@ const {thought, user} = require('../models/index');
 const thoughtController = {
     getAllThoughts(req, res) {
         thought.find({})
-        .populate({
-            path: 'user',
-            select: '-__v'
-        })
+        // .populate({
+        //     path: 'user',
+        //     select: '-__v'
+        // })
         .select('-__v')
         .sort ({ _id: -1 })
         .then(dbThoughtData => res.json(dbThoughtData))
