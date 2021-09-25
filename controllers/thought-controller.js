@@ -21,7 +21,6 @@ const thoughtController = {
             path: 'user',
             select: '-__v'
         })
-        
         .select('-__v')
         .then(dbThoughtData => res.json(dbThoughtData))
         .catch(err => {
